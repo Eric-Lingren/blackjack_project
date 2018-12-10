@@ -1,0 +1,325 @@
+.playContainer{
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+.table{
+    background-image: url('./images/blackjackTable2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    margin-top: 0%;
+    padding-top: 10%;
+    width: 100%;
+}
+.dealerHand{
+    margin-top: -9%;
+    display: flex;
+    justify-content: center;
+}
+.playerHand{
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+button{
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 2em;
+}
+.playButtons{
+    border-radius: 5px;
+    padding: 3px;
+    margin: 3px;
+    border: 2px solid black;
+    transition: .3s ease-out;
+    opacity: .7;
+    font-size: 2.5vw;
+}
+.playButtons:hover{
+    transition: .3s ease-out;
+    opacity: 1;
+}
+.displayCard{
+    width: auto;
+    height: 30vh;
+}
+.chipContainer{
+   display: flex;
+   justify-content: center;
+
+}
+.pokerChip{
+    width: auto;
+    height: 10vh;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin: 1vw;
+    transition: .1s ease-out;
+}
+.pokerChip:hover{
+    border: 3px solid white;
+    transition: .1s ease-out;
+}
+.playerBankroll{
+    margin-top: -7%;
+    margin-left: 8%;
+}
+.showCountStats{
+    background-color: white;
+    padding: 3%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    top: 40%;
+    border-radius: 20px;
+    border: 2px solid black;
+    opacity: .6;
+    width: 90%;
+    height: auto;
+    
+
+}
+.hideCountStats{
+    background-color: cornflowerblue;
+    width: 20%;
+    position: absolute;
+    top: 40%;
+    opacity: 0;
+}
+
+.showAdvice{
+    height: 100px;
+    background-color: white;
+    padding: 3%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    top: 12%;
+    width: 90%;
+    height: auto;
+    border-radius: 20px;
+    border: 2px solid black;
+    opacity: .6;
+    margin-bottom: 5vh;
+}
+.hideAdvice{
+    height: 100px;
+    width: 20%;
+    position: absolute;
+    right: 0;
+    top: 10%;
+    opacity: 0;
+}
+.h1TablePlaceholder{
+    opacity: 0;
+    font-size: 3em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.statsContainer{
+    height: 90vh;
+    width: 18vw;
+    position: absolute;
+    left: 82%;
+    top: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.centerTableOptions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%
+
+}
+.helpTitle{
+    margin: 0;
+    padding-left: 0px;
+    text-align: center;
+    border-bottom: 3px solid black;
+    font-size: 1.5vw;
+}
+.handTotals{
+    margin: 0;
+    padding: 4px;
+    font-size: 1.2vw;
+    
+}
+.showHelpButton{
+    border-radius: 5px;
+    padding: 3px;
+    margin: 3px;
+    border: 2px solid black;
+    position: relative;
+    top: 1%;
+    opacity: .8;
+    transition: .3s ease-out;
+    font-size: 2vw;
+    margin-bottom: 3vh;
+}
+.showHelpButton:hover{
+    transition: .3s ease-out;
+    opacity: 1;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+.showCountButton{
+    border-radius: 5px;
+    padding: 3px;
+    margin: 3px;
+    border: 2px solid black;
+    opacity: .8;
+    transition: .3s ease-out;
+    font-size: 2vw;
+    margin-top: 3vh;
+    height: auto;
+}
+.showCountButton:hover{
+    transition: .3s ease-out;
+    opacity: 1;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+.dealHandButton{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 3px;
+    border: 2px solid white;
+    opacity: .8;
+    transition: .3s ease-out;
+    font-size: 2.5vw;
+}
+.dealHandButton:hover{
+    transition: .3s ease-out;
+    opacity: 1;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.clearBetButton{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 3px;
+    border: 2px solid black;
+    opacity: .8;
+    transition: .3s ease-out;
+    margin-top: 5%;
+    font-size: 2vw;
+}
+.clearBetButton:hover{
+    transition: .3s ease-out;
+    opacity: 1;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+.bankOptions{
+    height: 75vh;
+    width: 18vw;
+    position: absolute;
+    left: 0%;
+    top: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.bankStats{
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid black;
+    opacity: .6;
+    width: 90%;
+    margin-top: 90%;
+
+}
+.deckInfo{
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid black;
+    opacity: .6;
+    width: 90%;
+    margin-top: 2%;
+}
+.tableOutcome{
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.cardBackVisible{
+    width: auto;
+    height: 30.5vh;
+    opacity: 1;
+}
+.cardBackHidden{
+    width: auto;
+    height: 30vh;
+    opacity: 0;
+}
+.centerPlayButtonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+
+/* Mobile View */
+@media screen and (max-width: 430px ){
+  
+    .pokerChip{
+        width: 13vw;
+        height: 13vw;
+    }.displayCard{
+        width: auto;
+        height: 25vw;
+    }.cardBackVisible{
+        width: auto;
+        height: 25vw;
+    }.dealerHand{
+        margin-top: 5%;
+    }.tableOutcome{
+        font-size: 4vh;
+    }.bankOptions{
+        height: 95vw;
+        width: 15vh;
+        top: 5%;
+    }.statsContainer{
+        height: 90vh;
+        width: 25vw;
+        position: absolute;
+        left: 74%;
+        top: 4%;
+    }.clearBetButton{
+        font-size: 4vw;
+    }
+    .showCountButton{
+        font-size: 3.5vw;
+        margin-top: 1vh;
+    }.showHelpButton{
+        font-size: 3.5vw;
+        margin-bottom: 1.5vh;
+    }.playButtons{
+        font-size: 4vw;
+    }.dealHandButton{
+        font-size: 4vw;
+    }.helpTitle{
+        font-size: 3.2vw;
+    }
+    .handTotals{
+        font-size: 2.5vw;
+        
+    }.showAdvice{
+        margin-bottom: 2vh;
+    }
+}
