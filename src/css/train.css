@@ -209,6 +209,8 @@
         font-size: 10vw;
     } .trainLinks{
         font-size: 7vw;
+    }  .trainLinks:hover{
+        font-size: 9vw;
     } .checkButton {
         font-size: 1.1em;
     }.checkButtonBig{
