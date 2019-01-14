@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 
 class TrainRunningCountSpeedCount extends Component {
     constructor(){
@@ -69,7 +68,6 @@ class TrainRunningCountSpeedCount extends Component {
     
 
     render() {
-        
         return ( 
             <div className='trainingWrapper'>
                 <div className='container'>
@@ -78,8 +76,14 @@ class TrainRunningCountSpeedCount extends Component {
                     <h2 className='subTitle'>Decks Left: {this.state.randomDeck}</h2>
                     <h2 className='subTitleMargin'>What's the true count? (round) </h2>
                     <form className='runningCountTrueCountForm'>
-                        <input className='runCountTrueCountInput' type='number' name='guess' value={this.state.guess} onChange={this.handleChange} placeholder='Enter True Count' ></input><br></br>
-                       
+                        <input  className='runCountTrueCountInput' 
+                                type='number' 
+                                name='guess' 
+                                value={this.state.guess} 
+                                onChange={this.handleChange} 
+                                placeholder='Enter True Count' >
+                        </input>
+                        <br></br>
                     </form>
                     <button className='checkButton' onClick={this.clickNew}>New</button>
                     <button className='checkButton' onClick={this.clickCheck}>Check</button>
@@ -89,7 +93,6 @@ class TrainRunningCountSpeedCount extends Component {
             </div>
         )
     }
-
 }
 
 export default TrainRunningCountSpeedCount

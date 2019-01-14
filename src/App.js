@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
 import axios from 'axios'
-import Navbar from './Navbar'
-import Home from './Home'
+import Navbar from './Components/Navbar'
+import Home from './Components/Home'
 import Play from './Play'
 import Learn from './Learn'
 import Train from './Train'

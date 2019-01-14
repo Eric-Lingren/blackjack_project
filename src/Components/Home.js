@@ -1,6 +1,6 @@
 import React from 'react'
-import './css/home.css'
-import homeLogo from './css/images/blackjackLogo.jpg'
+import '../css/home.css'
+import homeLogo from '../css/images/blackjackLogo.jpg'
 
 const Home = () => {
 
