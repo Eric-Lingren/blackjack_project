@@ -1,1 +1,0 @@
-//  Move state from app to game provider here.
