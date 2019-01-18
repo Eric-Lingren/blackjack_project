@@ -486,19 +486,30 @@ checkButton = (e) => {
             <div className='trainingWrapper'>
                 <div className='container'>
                 <h1 className='trainDrillSubtitle'>Basic Strategy Drill</h1>
-                <h4>Choose your Casino Rules:</h4>
-                <form>
-                    Dealer Hits all 17's<input type='checkbox'></input>
+                <h4 className='casino-rules-heading'>Choose your Casino Rules:</h4>
+                <form className='casino-rules-form'>
+                    <input  className='rules-checkbox' 
+                            type='checkbox'>
+                    </input> Dealer Stand's on Soft 17
+                    <br></br>
+                    <input  className='rules-checkbox' 
+                            type='checkbox'>
+                    </input>  Double after split allowed
+                    <br></br>
+                    <input  className='rules-checkbox' 
+                            type='checkbox'>
+                    </input>  Surrender allowed
+                    <br></br>
                 </form>
                 <h3 className='handDescription'>Dealer Hand</h3>
                 
                     <div className='dealerHandBS'>
-                       <img className='cardBS' src={this.state.dealerImages}></img>
+                        <img className='cardBS' src={this.state.dealerImages}></img>
                     </div>
 
                     <div className='playerHandBS'>
-                      <img  className='cardBS' src={this.state.playerImage1}></img>
-                      <img  className='cardBS' src={this.state.playerImage2}></img>
+                        <img  className='cardBS' src={this.state.playerImage1}></img>
+                        <img  className='cardBS' src={this.state.playerImage2}></img>
                     </div>
 
                     <h3 className='handDescription'>Player Hand</h3>
