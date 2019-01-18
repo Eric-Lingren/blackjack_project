@@ -486,8 +486,12 @@ checkButton = (e) => {
             <div className='trainingWrapper'>
                 <div className='container'>
                 <h1 className='trainDrillSubtitle'>Basic Strategy Drill</h1>
+                <h4>Choose your Casino Rules:</h4>
+                <form>
+                    Dealer Hits all 17's<input type='checkbox'></input>
+                </form>
                 <h3 className='handDescription'>Dealer Hand</h3>
-
+                
                     <div className='dealerHandBS'>
                        <img className='cardBS' src={this.state.dealerImages}></img>
                     </div>

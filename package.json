@@ -28,5 +28,14 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eric-Lingren/blackjack_project.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Eric-Lingren/blackjack_project/issues"
+  },
+  "homepage": "https://github.com/Eric-Lingren/blackjack_project#readme"
 }
