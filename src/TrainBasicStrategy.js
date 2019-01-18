@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
-import axios from 'axios'
-let buttonList;
+import React, {Component} from 'react';
+import axios from 'axios';
+import {withCasinoRules} from './context/CasinoRulesProvider';
+
 class TrainBasicStrategy extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             deckID: '',
             dealerHand: '',
@@ -482,6 +483,7 @@ checkButton = (e) => {
 
 
     render() {
+        console.log(this.props)
         return ( 
             <div className='trainingWrapper'>
                 <div className='container'>
@@ -490,7 +492,7 @@ checkButton = (e) => {
                 <form className='casino-rules-form'>
                     <input  className='rules-checkbox' 
                             type='checkbox'>
-                    </input> Dealer Stand's on Soft 17
+                    </input> Dealer stand's on soft 17
                     <br></br>
                     <input  className='rules-checkbox' 
                             type='checkbox'>
@@ -530,4 +532,4 @@ checkButton = (e) => {
     }
 }
 
-export default TrainBasicStrategy
+export default withCasinoRules(TrainBasicStrategy)
