@@ -1,5 +1,4 @@
-import React, {Component} from 'react'
-import axios from 'axios'
+import React, {Component} from 'react';
 
 
 class TrainBetSizing extends Component {
@@ -20,31 +19,23 @@ class TrainBetSizing extends Component {
     }
 
     checkAnswer = event => {
-        console.log('button Value ' + event.target.value)
-        console.log('current state ' + this.state.randomCount)
-        let answer = event.target.value;
+        let answerString = event.target.value;
+        let answer = parseInt(answerString)
         let count = this.state.randomCount
-        if (answer == 1 && count == 0 ){
-            console.log('correct!')
+
+        if (answer === 1 && count === 0 ){
             this.displayOutputCorrect()
-            
-        } else if (answer == 2 && count == 1 ){
-            console.log('correct!')
+        } else if (answer === 2 && count === 1 ){
             this.displayOutputCorrect()
-        } else if (answer == 4 && count == 2 ){
-            console.log('correct!')
+        } else if (answer === 4 && count === 2 ){
             this.displayOutputCorrect()
-        } else if (answer == 8 && count == 3 ){
-            console.log('correct!')
+        } else if (answer === 8 && count === 3 ){
             this.displayOutputCorrect()
-        } else if (answer == 16 && count == 4 ){
-            console.log('correct!')
+        } else if (answer === 16 && count === 4 ){
             this.displayOutputCorrect()
         } else{
-            console.log('NOPE!')
             this.displayOutputIncorrect()
         }
-        
         this.generateRandomCount()
     }
 

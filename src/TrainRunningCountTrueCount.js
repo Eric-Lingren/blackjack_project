@@ -47,18 +47,13 @@ class TrainRunningCountSpeedCount extends Component {
     }
 
     checkAnswer = () => {
-        // console.log('check answer function ran')
-        // console.log( 'guess is : ' + this.state.guess )
-        // console.log( 'answer is : ' + this.state.answer )
-        console.log( 'were they right state: ' + this.state.wereTheyRight )
-        if (this.state.answer == this.state.guess){
-            console.log('You were right!')
+        let guessNumber = parseInt(this.state.guess)
+        if (this.state.answer === guessNumber){
             this.setState({
                 wereTheyRight: true,
             })
             return <h2>Correct!</h2>
         } else{
-            console.log('You were wrong...')
             this.setState({
                 wereTheyRight: false
             })

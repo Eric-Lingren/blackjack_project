@@ -510,12 +510,12 @@ class TrainBasicStrategy extends Component {
                 <h3 className='handDescription'>Dealer Hand</h3>
                 
                     <div className='dealerHandBS'>
-                        <img className='cardBS' src={this.state.dealerImages}></img>
+                        <img className='cardBS' src={this.state.dealerImages} alt=''></img>
                     </div>
 
                     <div className='playerHandBS'>
-                        <img  className='cardBS' src={this.state.playerImage1}></img>
-                        <img  className='cardBS' src={this.state.playerImage2}></img>
+                        <img  className='cardBS' src={this.state.playerImage1} alt=''></img>
+                        <img  className='cardBS' src={this.state.playerImage2} alt=''></img>
                     </div>
 
                     <h3 className='handDescription'>Player Hand</h3>

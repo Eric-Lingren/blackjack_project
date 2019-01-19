@@ -12,11 +12,9 @@ import cardBack from './css/images/cardBack.png'
 
 
 const Play = (props) => {
-const { dealHand, dealOneCard, dealerHandImages, playerHandImages, playerHandImages2, playerHandTotal, dealerHandTotal, playerStands, playerDoubles, playerDoubleBet, playerSplits, playerBet, playerBankroll, bet1, bet5, bet25, bet50, bet100, bet500, playerClickedStand, playerClickedDouble, playerClickedSplit, dealerWins, playerWins, playerBust, dealerBust, clearBet, gameCount, hideShowCount, cardsDealt, decksPlayed, remainingCards, remainingDecks, trueCount, playerBaseBet, playerHand2Total, showCountDiv, showAdviceDiv, hideShowAdvice, playerAdvantage, dealerCardBackShowing } = props;
+const { dealHand, dealOneCard, dealerHandImages, playerHandImages, playerHandImages2, playerHandTotal, dealerHandTotal, playerStands, playerDoubles, playerDoubleBet, playerSplits, playerBet, playerBankroll, bet1, bet5, bet25, bet50, bet100, bet500, playerClickedStand, playerClickedDouble, playerClickedSplit, dealerWins, playerWins, playerBust, dealerBust, clearBet, gameCount, hideShowCount, cardsDealt, decksPlayed, remainingCards, remainingDecks, trueCount, playerBaseBet, showCountDiv, showAdviceDiv, hideShowAdvice, playerAdvantage, dealerCardBackShowing } = props;
 
     function tableStatus(){
-        // console.log('did dealer win: ' + dealerWins);
-        // console.log('did player bust: ' +  playerBust); 
         if((playerHandTotal && dealerWins) || (playerHandTotal && playerBust)){
             return <h1 className='tableOutcome'>Dealer Wins</h1>
         } else if( (playerHandTotal && playerWins) || (playerHandTotal && dealerBust) ){
