@@ -6,22 +6,29 @@ class CasinoRulesProvider extends Component {
     constructor(){
         super()
         this.state = {
-            dealerStandSoft17: true,
+            dealerStandsSoft17: true,
             doubleAfterSplitAllowed: true,
             surrenderAllowed: true,
         }
     }
 
+    setGameRules = (name, checked) => {
+        this.setState({
+            [name]: checked
+        })
+    }
+
     render(){
         return (
-            <CasinoRulesProvider 
+            <CasinoRulesContext.Provider
                 value={{
-                    dealerStandSoft17: this.state.dealerStandSoft17,
+                    dealerStandsSoft17: this.state.dealerStandsSoft17,
                     doubleAfterSplitAllowed: this.state.doubleAfterSplitAllowed,
                     surrenderAllowed: this.state.surrenderAllowed,
+                    setGameRules: this.setGameRules,
                 }}>
                 { this.props.children }
-            </CasinoRulesProvider>
+            </CasinoRulesContext.Provider>
         )
     }
 }

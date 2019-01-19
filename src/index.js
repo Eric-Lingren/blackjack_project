@@ -6,9 +6,9 @@ import {HashRouter} from 'react-router-dom'
 import CasinoRulesProvider from './context/CasinoRulesProvider'
 
 ReactDOM.render(
-    <CasinoRulesProvider>
-        <HashRouter>
+    <HashRouter>
+        <CasinoRulesProvider>
             <App />
-        </HashRouter>
-    </CasinoRulesProvider>, 
-document.getElementById('root'));
+        </CasinoRulesProvider>
+    </HashRouter> 
+, document.getElementById('root'));
