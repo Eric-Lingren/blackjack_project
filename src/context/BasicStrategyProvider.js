@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 const BasicStrategyContext = React.createContext()
 
@@ -6,18 +7,19 @@ class BasicStrategyProvider extends Component {
     constructor(){
         super()
         this.state = {
-
         }
     }
+ 
+
 
     render(){
         return (
-            <BasicStrategy.Provider 
+            <BasicStrategyContext.Provider 
                 value={{
-                    
+
                 }}>
                 { this.props.children }
-            </BasicStrategy.Provider>
+            </BasicStrategyContext.Provider>
         )
     }
 }

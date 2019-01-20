@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {withCasinoRules} from './context/CasinoRulesProvider';
+import {withCorrectPlay} from './context/CorrectPlayProvider';
 
 class TrainBasicStrategy extends Component {
     constructor(props){
@@ -19,7 +20,6 @@ class TrainBasicStrategy extends Component {
             pCard2Number: '',
             dHand: '',
             pHand: '',
-            correctPlay: 'STAND',
             options: ['HIT', 'STAND', 'DOUBLE', 'SPLIT', 'SURRENDER'],
             playerGuess: '',
             buttonList: '',
@@ -45,7 +45,8 @@ class TrainBasicStrategy extends Component {
         const playerCardImage1 = response.data.cards[1].image
         const playerCardImage2 = response.data.cards[2].image
         const hands = ['Hit', 'Stand', 'Double', 'Split', 'Surrender']
-        const options = hands.map(hand => <button className='checkButton' onClick={this.checkButton} id='notSelected' name={hand.toUpperCase()} value={hand.toUpperCase()} >{hand}</button>)
+        const options = hands.map(hand => <button className='checkButton' onClick={this.checkButton} id='notSelected' 
+                        name={hand.toUpperCase()} value={hand.toUpperCase()} >{hand}</button>)
 
             this.setState({
                 dealerHand: dealerCardValue,
@@ -122,337 +123,28 @@ class TrainBasicStrategy extends Component {
         }, () => this.whatCheckHandFunctionToRun() )
     }
 
-  whatCheckHandFunctionToRun = () => {
-    const pCard1Number = this.state.pCard1Number
-    const pCard2Number = this.state.pCard2Number
+    whatCheckHandFunctionToRun = () => {
+        const pCard1Number = parseInt(this.state.pCard1Number)
+        const pCard2Number = parseInt(this.state.pCard2Number)
+    
+        let dealerHand = parseInt(this.state.dHand)
+        let playerHand = parseInt(this.state.pHand)
 
-    if (pCard1Number === pCard2Number ){
-        //  run split check
-        this.checkSplitHand()
-    } else if (pCard1Number === 11 || pCard2Number === 11){
-        //  Run soft hands check
-        this.checkSoftHand()
-    } else {
-        //  Run hard hands check
-        this.checkHardHand()
+        if (pCard1Number === pCard2Number ){
+            this.props.checkSplitHand(dealerHand, playerHand)
+        } else if (pCard1Number === 11 || pCard2Number === 11){
+            this.props.checkSoftHand(dealerHand, playerHand)
+        } else {
+            this.props.checkHardHand(dealerHand, playerHand)
+        }
     }
-  }
 
 
-  checkHardHand = () => {
-    console.log('check HARD hands function ran')
-    const pHand = this.state.pHand;
-    const dHand = this.state.dHand;
-
-    if (pHand <= 8 ){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand >= 17) {
-        console.log('the correct Play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    }else if (pHand === 9 && dHand === 2){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if(pHand <= 9 && dHand <= 6){
-        console.log('the correct Play is DOUBLE')
-        this.setState({
-            correctPlay: 'DOUBLE',
-        })
-    } else if(pHand === 9 && dHand <= 11){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if(pHand === 10 && dHand <= 9){
-        console.log('the correct Play is DOUBLE')
-        this.setState({
-            correctPlay: 'DOUBLE',
-        })
-    } else if (pHand === 10 && dHand <= 11){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 11 && dHand <= 10){
-        console.log('the correct Play is DOUBLE')
-        this.setState({
-            correctPlay: 'DOUBLE',
-        })
-    } else if (pHand === 11 && dHand === 11){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 12 && dHand <= 3){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 12 && dHand <= 6){
-        console.log('the correct Play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    } else if(pHand === 12 && dHand <= 11){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 13 && dHand <= 6){
-        console.log('the correct Play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    } else if (pHand === 13 && dHand <= 11){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 14 && dHand <= 6){
-        console.log('the correct Play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    } else if (pHand === 14 && dHand <= 11){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 15 && dHand <= 6){
-        console.log('the correct Play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    } else if (pHand === 15 && dHand <= 9){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 15 && dHand === 10){
-        console.log('the correct Play is SURRENDER (else hit)')
-        this.setState({
-            correctPlay: 'SURRENDER',
-        })
-    } else if (pHand === 15 && dHand === 11){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 16 && dHand <= 6){
-        console.log('the correct Play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    } else if (pHand === 16 && dHand <= 8){
-        console.log('the correct Play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    }  else if (pHand === 16 && dHand <= 11){
-        console.log('the correct Play is SURRENDER (else hit)')
-        this.setState({
-            correctPlay: 'SURRENDER',
-        })
-    }
-  }
-
-  checkSoftHand = () => {
-    console.log('check Soft hands function ran')
-    const pHand = this.state.pHand;
-    const dHand = this.state.dHand;
-
-    if (pHand >= 19){
-        console.log('the correct play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    } else if(pHand === 13 && dHand <= 4){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 13 && dHand <= 6){
-        console.log('the correct play is DOUBLE.  Else Hit.')
-        this.setState({
-            correctPlay: 'DOUBLE',
-        })
-    } else if(pHand === 13 && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if(pHand === 14 && dHand <= 4){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 14 && dHand <= 6){
-        console.log('the correct play is DOUBLE.  Else Hit.')
-        this.setState({
-            correctPlay: 'DOUBLE',
-        })
-    } else if(pHand === 14 && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if(pHand === 15 && dHand <= 3){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 15 && dHand <= 6){
-        console.log('the correct play is DOUBLE.  Else Hit.')
-        this.setState({
-            correctPlay: 'DOUBLE',
-        })
-    } else if(pHand === 15 && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    }  else if(pHand === 16 && dHand <= 3){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 16 && dHand <= 6){
-        console.log('the correct play is DOUBLE.  Else Hit.')
-        this.setState({
-            correctPlay: 'DOUBLE',
-        })
-    } else if(pHand === 16 && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if(pHand === 17 && dHand === 2){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 17 && dHand <= 6){
-        console.log('the correct play is DOUBLE.  Else Hit.')
-        this.setState({
-            correctPlay: 'DOUBLE',
-        })
-    } else if(pHand === 17 && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if(pHand === 18 && dHand === 2){
-        console.log('the correct play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    } else if (pHand === 18 && dHand <= 6){
-        console.log('the correct play is DOUBLE.  Else Stand.')
-        this.setState({
-            correctPlay: 'DOUBLE',
-        })
-    } else if(pHand === 18 && dHand <= 8){
-        console.log('the correct play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    } else if(pHand === 18 && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    }
-  }
 
 
-  checkSplitHand = () => {
-    console.log('check SPLIT hands function ran')
-    const pHand = this.state.pHand;
-    const dHand = this.state.dHand;
-
-    if(pHand === 22){
-        console.log('the correct play is SPLIT')
-        this.setState({
-            correctPlay: 'SPLIT',
-        })
-    } else if (pHand === 20){
-        console.log('the correct play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    } else if (pHand === 16){
-        console.log('the correct play is SPLIT')
-        this.setState({
-            correctPlay: 'SPLIT',
-        })
-    } else if((pHand === 4 || pHand === 6) && dHand <= 7){
-        console.log('the correct play is SPLIT')
-        this.setState({
-            correctPlay: 'SPLIT',
-        })
-    } else if((pHand === 4 || pHand === 6) && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if(pHand === 8 && dHand <= 4){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 8 && dHand <= 6){
-        console.log('the correct play is SPLIT')
-        this.setState({
-            correctPlay: 'SPLIT',
-        })
-    } else if (pHand === 8 && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 12 && dHand <= 6){
-        console.log('the correct play is SPLIT')
-        this.setState({
-            correctPlay: 'SPLIT',
-        })
-    } else if (pHand === 12 && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 14 && dHand <= 7){
-        console.log('the correct play is SPLIT')
-        this.setState({
-            correctPlay: 'SPLIT',
-        })
-    } else if (pHand === 14 && dHand <= 11){
-        console.log('the correct play is HIT')
-        this.setState({
-            correctPlay: 'HIT',
-        })
-    } else if (pHand === 18 & (dHand === 7 || dHand === 10 || dHand === 11 ) ){
-        console.log('the correct play is STAND')
-        this.setState({
-            correctPlay: 'STAND',
-        })
-    }  else if (pHand === 18 && dHand <= 9 ){
-        console.log('the correct play is SPLIT')
-        this.setState({
-            correctPlay: 'SPLIT',
-        })
-    }
-}
 
     checkButton = (e) => {
-        // console.log(e.target.value)
-        //console.log('a check button was clicked')
-        const answer = this.state.correctPlay
+        const answer = this.props.correctPlay
         const guess = e.target.value
         const hands = ['Hit', 'Stand', 'Double', 'Split', 'Surrender']
         const butts = hands.map(hand => {
@@ -536,4 +228,4 @@ class TrainBasicStrategy extends Component {
     }
 }
 
-export default withCasinoRules(TrainBasicStrategy)
+export default withCorrectPlay(withCasinoRules(TrainBasicStrategy))
