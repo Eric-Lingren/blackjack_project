@@ -249,35 +249,68 @@ class CorrectPlayProvider extends Component {
                 correctPlay: 'HIT',
             })
         } else if(pHand <= 9 && dHand <= 6){
-            console.log('the correct Play is DOUBLE')
-            this.setState({
-                correctPlay: 'DOUBLE',
-            })
+            if (this.state.doubleAllowed === true){
+                console.log('the correct Play is DOUBLE')
+                this.setState({
+                    correctPlay: 'DOUBLE',
+                })
+            } else if (this.state.doubleAllowed === false){
+                console.log('the correct Play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            } 
         } else if(pHand === 9 && dHand <= 11){
             console.log('the correct Play is HIT')
             this.setState({
                 correctPlay: 'HIT',
             })
         } else if(pHand === 10 && dHand <= 9){
-            console.log('the correct Play is DOUBLE')
-            this.setState({
-                correctPlay: 'DOUBLE',
-            })
+            if (this.state.doubleAllowed === true){
+                console.log('the correct Play is DOUBLE')
+                this.setState({
+                    correctPlay: 'DOUBLE',
+                })
+            } else if (this.state.doubleAllowed === false){
+                console.log('the correct Play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            } 
         } else if (pHand === 10 && dHand <= 11){
             console.log('the correct Play is HIT')
             this.setState({
                 correctPlay: 'HIT',
             })
         } else if (pHand === 11 && dHand <= 10){
-            console.log('the correct Play is DOUBLE')
-            this.setState({
-                correctPlay: 'DOUBLE',
-            })
+            if (this.state.doubleAllowed === true){
+                console.log('the correct Play is DOUBLE')
+                this.setState({
+                    correctPlay: 'DOUBLE',
+                })
+            } else if (this.state.doubleAllowed === false){
+                console.log('the correct Play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            } 
         } else if (pHand === 11 && dHand === 11){
-            console.log('the correct Play is HIT')
-            this.setState({
-                correctPlay: 'HIT',
-            })
+            if (this.state.dealerStandsSoft17 === true){
+                console.log('the correct Play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            } else if (this.state.dealerStandsSoft17 === false && this.state.doubleAllowed === true){
+                console.log('the correct Play is DOUBLE')
+                this.setState({
+                    correctPlay: 'DOUBLE',
+                })
+            }  else if (this.state.dealerStandsSoft17 === false && this.state.doubleAllowed === false){
+                console.log('the correct Play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            } 
         } else if (pHand === 12 && dHand <= 3){
             console.log('the correct Play is HIT')
             this.setState({
@@ -324,15 +357,36 @@ class CorrectPlayProvider extends Component {
                 correctPlay: 'HIT',
             })
         } else if (pHand === 15 && dHand === 10){
-            console.log('the correct Play is SURRENDER (else hit)')
-            this.setState({
-                correctPlay: 'SURRENDER',
-            })
+            if(this.state.surrenderAllowed === true){
+                console.log('the correct Play is SURRENDER')
+                this.setState({
+                    correctPlay: 'SURRENDER',
+                })
+            } else if (this.state.surrenderAllowed === false){
+                console.log('the correct Play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            }   
         } else if (pHand === 15 && dHand === 11){
-            console.log('the correct Play is HIT')
-            this.setState({
-                correctPlay: 'HIT',
-            })
+            if(this.state.dealerStandsSoft17 === true){
+                console.log('the correct Play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            } else if (this.state.dealerStandsSoft17 === false){
+                if(this.state.surrenderAllowed === true){
+                    console.log('the correct Play is SURRENDER')
+                    this.setState({
+                        correctPlay: 'SURRENDER',
+                    })
+                } else if (this.state.surrenderAllowed === false){
+                    console.log('the correct Play is HIT')
+                    this.setState({
+                        correctPlay: 'HIT',
+                    })
+                } 
+            }  
         } else if (pHand === 16 && dHand <= 6){
             console.log('the correct Play is STAND')
             this.setState({
@@ -344,10 +398,17 @@ class CorrectPlayProvider extends Component {
                 correctPlay: 'HIT',
             })
         }  else if (pHand === 16 && dHand <= 11){
-            console.log('the correct Play is SURRENDER (else hit)')
-            this.setState({
-                correctPlay: 'SURRENDER',
-            })
+            if(this.state.surrenderAllowed === true){
+                console.log('the correct Play is SURRENDER')
+                this.setState({
+                    correctPlay: 'SURRENDER',
+                })
+            } else if (this.state.surrenderAllowed === false){
+                console.log('the correct Play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            } 
         }
     }
 
