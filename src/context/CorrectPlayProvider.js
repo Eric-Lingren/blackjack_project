@@ -24,6 +24,11 @@ class CorrectPlayProvider extends Component {
         const pHand = playerHand;
         const dHand = dealerHand;
         
+        // dealerStandsSoft17: false
+        // doubleAllowed: false
+        // doubleAfterSplitAllowed: false
+        // surrenderAllowed: false
+
         if(pHand === 22){
             console.log('the correct play is SPLIT')
             this.setState({
@@ -35,10 +40,29 @@ class CorrectPlayProvider extends Component {
                 correctPlay: 'STAND',
             })
         } else if (pHand === 16){
-            console.log('the correct play is SPLIT')
-            this.setState({
-                correctPlay: 'SPLIT',
-            })
+            if (dHand === 11 && this.dealerStandsSoft17 === false && this.state.surrenderAllowed === true) {
+                console.log('the correct play is SURRENDER')
+                this.setState({
+                    correctPlay: 'SURRENDER',
+                })
+            } else {
+                console.log('the correct play is SPLIT')
+                this.setState({
+                    correctPlay: 'SPLIT',
+                })
+            }
+        } else if((pHand === 4 || pHand === 6) && dHand <= 3){
+            if(this.state.doubleAfterSplitAllowed === true){
+                console.log('the correct play is SPLIT')
+                this.setState({
+                    correctPlay: 'SPLIT',
+                })
+            } else if (this.state.doubleAfterSplitAllowed === false){
+                console.log('the correct play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            }   
         } else if((pHand === 4 || pHand === 6) && dHand <= 7){
             console.log('the correct play is SPLIT')
             this.setState({
@@ -55,15 +79,34 @@ class CorrectPlayProvider extends Component {
                 correctPlay: 'HIT',
             })
         } else if (pHand === 8 && dHand <= 6){
-            console.log('the correct play is SPLIT')
-            this.setState({
-                correctPlay: 'SPLIT',
-            })
+            if(this.state.doubleAfterSplitAllowed === true){
+                console.log('the correct play is SPLIT')
+                this.setState({
+                    correctPlay: 'SPLIT',
+                })
+            } else if (this.state.doubleAfterSplitAllowed === false){
+                console.log('the correct play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            }   
         } else if (pHand === 8 && dHand <= 11){
             console.log('the correct play is HIT')
             this.setState({
                 correctPlay: 'HIT',
             })
+        } else if (pHand === 12 && dHand === 2){
+            if(this.state.doubleAfterSplitAllowed === true){
+                console.log('the correct play is SPLIT')
+                this.setState({
+                    correctPlay: 'SPLIT',
+                })
+            } else if (this.state.doubleAfterSplitAllowed === false){
+                console.log('the correct play is HIT')
+                this.setState({
+                    correctPlay: 'HIT',
+                })
+            }
         } else if (pHand === 12 && dHand <= 6){
             console.log('the correct play is SPLIT')
             this.setState({
@@ -100,11 +143,6 @@ class CorrectPlayProvider extends Component {
     checkSoftHand = (dealerHand, playerHand) => {
         const pHand = playerHand;
         const dHand = dealerHand;
-        
-        // dealerStandsSoft17: false
-        // doubleAllowed: false
-        // doubleAfterSplitAllowed: false
-        // surrenderAllowed: false
 
         if (pHand >= 20){
             console.log('the correct play is STAND')
