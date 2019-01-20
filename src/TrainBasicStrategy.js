@@ -145,20 +145,20 @@ class TrainBasicStrategy extends Component {
         }
     }
 
-
-
-
-
     checkButton = (e) => {
+       
+
         const answer = this.props.correctPlay
         const guess = e.target.value
         const hands = ['Hit', 'Stand', 'Double', 'Split', 'Surrender']
-        const butts = hands.map(hand => {
+        const buttons = hands.map(hand => {
             if(guess === answer && hand.toUpperCase() === answer){
+                this.sendUpdatedPlayerStatsToProvider(true)
                 return (
                     <button className='checkButton' onClick={this.checkButton} id='correct' name={hand.toUpperCase()} value={hand.toUpperCase()} >{hand}</button>
                 )
             }else if (hand.toUpperCase() === answer){
+                this.sendUpdatedPlayerStatsToProvider(false)
                 return (
                     <button className='checkButton' onClick={this.checkButton} id='correct' name={hand.toUpperCase()} value={hand.toUpperCase()} >{hand}</button>
                 )
@@ -173,7 +173,21 @@ class TrainBasicStrategy extends Component {
             }
         })
 
-        this.setState({buttonList: butts, buttonClass: 'checkButtonOff', bottomMargin: '0px'})
+        this.setState({buttonList: buttons, buttonClass: 'checkButtonOff', bottomMargin: '0px'})
+    }
+
+    sendUpdatedPlayerStatsToProvider = (playerWasCorrect) => {
+        let currentHandType = this.props.currentKindOfHandBeingPlayed
+        this.props.setCorrectHandsPlayed(playerWasCorrect, currentHandType)
+    }
+
+    checkStats = () => {
+        console.log('hard hands played ' + this.props.hardHandsPlayed)
+        console.log('hard hands correct ' + this.props.hardHandsCorrect)
+        console.log('soft hands played ' + this.props.softHandsPlayed)
+        console.log('soft hands correct ' + this.props.softHandsCorrect)
+        console.log('split hands played ' + this.props.splitHandsPlayed)
+        console.log('split hands correct ' + this.props.splitHandsCorrect)
     }
 
     handleRulesCheckbox = (e) => {
@@ -231,6 +245,7 @@ class TrainBasicStrategy extends Component {
                         <button className={this.state.buttonClass} onClick={this.checkButton} id='buttonSurrender' name='SURRENDER' value='SURRENDER' >Surrender</button> <br></br>
                         {this.state.buttonList}
                         <button className='dealBSButton' onClick={this.dealCard}>Deal</button>
+                        <button className='check-stats-button' onClick={this.checkStats}>Check Stats</button>
                     </div>
                     
                 </div>

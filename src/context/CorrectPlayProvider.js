@@ -11,6 +11,13 @@ class CorrectPlayProvider extends Component {
             doubleAllowed: false,
             doubleAfterSplitAllowed: false,
             surrenderAllowed: false,
+            hardHandsPlayed: 0,
+            hardHandsCorrect: 0,
+            softHandsPlayed: 0,
+            softHandsCorrect: 0,
+            splitHandsPlayed: 0,
+            splitHandsCorrect: 0,
+            currentKindOfHandBeingPlayed: '',
         }
     }
 
@@ -20,7 +27,43 @@ class CorrectPlayProvider extends Component {
         })
     }
 
+    setCorrectHandsPlayed = (playerWasCorrect, currentHandType) => {
+        console.log(playerWasCorrect, currentHandType) 
+        if (currentHandType === 'HARD'){
+            if(playerWasCorrect){
+                this.setState(prevState =>{
+                    return {
+                        hardHandsCorrect: prevState.hardHandsCorrect += 1
+                    }
+                })
+            } 
+        } else if (currentHandType === 'SOFT'){
+            if(playerWasCorrect){
+                this.setState(prevState =>{
+                    return {
+                        softHandsCorrect: prevState.softHandsCorrect += 1
+                    }
+                })
+            } 
+        } else {
+            if(playerWasCorrect){
+                this.setState(prevState =>{
+                    return {
+                        splitHandsCorrect: prevState.splitHandsCorrect += 1
+                    }
+                })
+            } 
+        }
+    }
+
     checkSplitHand = (dealerHand, playerHand) => {
+        this.setState(prevState => {
+            return{
+                splitHandsPlayed: prevState.splitHandsPlayed += 1,
+                currentKindOfHandBeingPlayed: 'SPLIT'
+            }
+        })
+
         const pHand = playerHand;
         const dHand = dealerHand;
 
@@ -138,6 +181,13 @@ class CorrectPlayProvider extends Component {
     checkSoftHand = (dealerHand, playerHand) => {
         const pHand = playerHand;
         const dHand = dealerHand;
+
+        this.setState(prevState => {
+            return{
+                softHandsPlayed: prevState.softHandsPlayed += 1,
+                currentKindOfHandBeingPlayed: 'SOFT'
+            }
+        })
 
         if (pHand >= 20){
             console.log('the correct play is STAND')
@@ -327,6 +377,13 @@ class CorrectPlayProvider extends Component {
     checkHardHand = (dealerHand, playerHand) => {
         const pHand = playerHand;
         const dHand = dealerHand;
+
+        this.setState(prevState => {
+            return{
+                hardHandsPlayed: prevState.hardHandsPlayed += 1,
+                currentKindOfHandBeingPlayed: 'HARD'
+            }
+        })
 
         if (pHand <= 8 ){
             console.log('the correct Play is HIT')
@@ -538,6 +595,14 @@ class CorrectPlayProvider extends Component {
                     checkHardHand: this.checkHardHand,
                     correctPlay: this.state.correctPlay,
                     setCorrectPlayRules: this.setCorrectPlayRules,
+                    currentKindOfHandBeingPlayed: this.state.currentKindOfHandBeingPlayed,
+                    setCorrectHandsPlayed: this.setCorrectHandsPlayed,
+                    hardHandsPlayed: this.state.hardHandsPlayed,
+                    hardHandsCorrect: this.state.hardHandsCorrect,
+                    softHandsPlayed: this.state.softHandsPlayed,
+                    softHandsCorrect: this.state.softHandsCorrect,
+                    splitHandsPlayed: this.state.splitHandsPlayed,
+                    splitHandsCorrect: this.state.splitHandsCorrect,
                 }}>
                 { this.props.children }
             </CorrectPlayContext.Provider>

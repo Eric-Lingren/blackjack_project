@@ -4,7 +4,6 @@
     
 }
 .trainingWrapper{
-  
     height: 100%;
     margin-top: 0;
     padding-top: 0;
@@ -38,9 +37,12 @@
 .casino-rules-heading{
     margin: 0;
     margin-top: 20px;
+    color: white;
+    text-decoration: underline;
 }
 .casino-rules-form{
     margin-bottom: 20px;
+    color: white;
 }
 .rules-checkbox{
     margin-right: 10px;
@@ -52,7 +54,6 @@
     transition: .3s ease-out;
     text-decoration: none;
     border-bottom: white 3px solid;
- 
 }
 .drillHeader{
     margin-top: 0;
@@ -63,7 +64,6 @@
     font-size: 3.5vw;
     transition: .3s ease-out;
     text-shadow: 2px 2px 2px black;
-   
 }
 .container{
     display: flex;
@@ -123,7 +123,6 @@
     align-items: center;
 
 }
-
 .basicStrategyButtonWrapper{
     justify-content: center;
     align-content: center;
@@ -154,6 +153,22 @@
     transition: .3s ease-out;
 }
 .dealBSButton:hover{
+    opacity: 1;
+    transition: .3s ease-out;
+    width: 50%;
+}
+.check-stats-button{
+    border-radius: 5px;
+    padding: 3px;
+    margin: 3px;
+    width: 40%;
+    background-color: cornflowerblue;
+    color: white;
+    border: 2px solid white;
+    opacity: .8;
+    transition: .3s ease-out;
+}
+.check-stats-button:hover{
     opacity: 1;
     transition: .3s ease-out;
     width: 50%;
@@ -226,7 +241,7 @@
         font-size: 1.1em;
     }.checkButtonBig{
         font-size: 1.1em;
-    }.dealBSButton {
+    }.dealBSButton, .check-stats-button {
         font-size: 1.3em;
     }.trainDrillSubtitle{
         font-size: 7vw;
@@ -242,10 +257,8 @@
 
 /* Small Mobile View */
 @media screen and (max-width: 325px ){
-   .trainDrillSubtitle{
-       
-   } .toggleCount{
-       font-size: 1.3em;
-   }
+    .toggleCount{
+        font-size: 1.3em;
+    }
 }
 
