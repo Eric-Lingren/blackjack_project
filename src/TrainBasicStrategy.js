@@ -23,7 +23,8 @@ class TrainBasicStrategy extends Component {
             playerGuess: '',
             buttonList: '',
             buttonClass: 'checkButton',
-            bottomMargin: '18px'
+            bottomMargin: '18px',
+            remainingCardsInDeck: 0,
         }
     }
     componentDidMount(){
@@ -37,15 +38,16 @@ class TrainBasicStrategy extends Component {
 
     dealCard = () => {
         axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deckID}/draw/?count=3`).then(response => {
-        const dealerCardValue = response.data.cards[0].value  
-        const playerCardValue1 = response.data.cards[1].value  
-        const playerCardValue2 = response.data.cards[2].value  
-        const dealerCardImage = response.data.cards[0].image
-        const playerCardImage1 = response.data.cards[1].image
-        const playerCardImage2 = response.data.cards[2].image
-        const hands = ['Hit', 'Stand', 'Double', 'Split', 'Surrender']
-        const options = hands.map(hand => <button className='checkButton' onClick={this.checkButton} id='notSelected' 
-                        name={hand.toUpperCase()} value={hand.toUpperCase()} >{hand}</button>)
+            
+            const dealerCardValue = response.data.cards[0].value  
+            const playerCardValue1 = response.data.cards[1].value  
+            const playerCardValue2 = response.data.cards[2].value  
+            const dealerCardImage = response.data.cards[0].image
+            const playerCardImage1 = response.data.cards[1].image
+            const playerCardImage2 = response.data.cards[2].image
+            const hands = ['Hit', 'Stand', 'Double', 'Split', 'Surrender']
+            const options = hands.map(hand => <button className='checkButton' onClick={this.checkButton} id='notSelected' 
+                            name={hand.toUpperCase()} value={hand.toUpperCase()} >{hand}</button>)
 
             this.setState({
                 dealerHand: dealerCardValue,
@@ -54,12 +56,17 @@ class TrainBasicStrategy extends Component {
                 playerCard2: playerCardValue2,
                 playerImage1: playerCardImage1, 
                 playerImage2: playerCardImage2,
+                remainingCardsInDeck: response.data.remaining,
                 buttonList: options
-            }, () => this.showData() )
+            }, () => this.showCardData() )
         })
     }
 
-    showData = () => {
+    showCardData = () => {
+        if(this.state.remainingCardsInDeck <= 5){
+            axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deckID}/shuffle/`).then(response => {
+            })
+        }
         const dCard = this.state.dealerHand;
         let dCardNumber = 0
         const pCard1 = this.state.playerCard1;

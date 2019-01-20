@@ -23,11 +23,6 @@ class CorrectPlayProvider extends Component {
     checkSplitHand = (dealerHand, playerHand) => {
         const pHand = playerHand;
         const dHand = dealerHand;
-        
-        // dealerStandsSoft17: false
-        // doubleAllowed: false
-        // doubleAfterSplitAllowed: false
-        // surrenderAllowed: false
 
         if(pHand === 22){
             console.log('the correct play is SPLIT')
