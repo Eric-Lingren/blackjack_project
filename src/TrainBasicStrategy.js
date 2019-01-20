@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {withCasinoRules} from './context/CasinoRulesProvider';
 import {withCorrectPlay} from './context/CorrectPlayProvider';
 
 class TrainBasicStrategy extends Component {
@@ -173,7 +172,7 @@ class TrainBasicStrategy extends Component {
     handleRulesCheckbox = (e) => {
         let name = e.target.name
         let checked = e.target.checked
-        this.props.setGameRules(name, checked)
+        this.props.setCorrectPlayRules(name, checked)
     }
 
     render() {
@@ -187,6 +186,11 @@ class TrainBasicStrategy extends Component {
                             name='dealerStandsSoft17' 
                             type='checkbox'>
                     </input> Dealer stand's on soft 17
+                    <br></br>
+                    <input  className='rules-checkbox'
+                            name='doubleAllowed' 
+                            type='checkbox'>
+                    </input>  Double allowed
                     <br></br>
                     <input  className='rules-checkbox'
                             name='doubleAfterSplitAllowed' 
@@ -228,4 +232,4 @@ class TrainBasicStrategy extends Component {
     }
 }
 
-export default withCorrectPlay(withCasinoRules(TrainBasicStrategy))
+export default withCorrectPlay(TrainBasicStrategy)

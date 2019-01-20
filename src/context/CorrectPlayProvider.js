@@ -7,7 +7,17 @@ class CorrectPlayProvider extends Component {
         super()
         this.state = {
             correctPlay: '',
+            dealerStandsSoft17: false,
+            doubleAllowed: false,
+            doubleAfterSplitAllowed: false,
+            surrenderAllowed: false,
         }
+    }
+
+    setCorrectPlayRules = (name, checked) => {
+        this.setState({
+            [name]: checked
+        })
     }
 
     checkSplitHand = (dealerHand, playerHand) => {
@@ -198,17 +208,42 @@ class CorrectPlayProvider extends Component {
         const pHand = playerHand;
         const dHand = dealerHand;
 
+        // dealerStandsSoft17: false
+        // doubleAllowed: false
+        // doubleAfterSplitAllowed: false
+        // surrenderAllowed: false
+
         if (pHand <= 8 ){
             console.log('the correct Play is HIT')
             this.setState({
                 correctPlay: 'HIT',
             })
-        } else if (pHand >= 17) {
+        } else if (pHand > 17) {
             console.log('the correct Play is STAND')
             this.setState({
                 correctPlay: 'STAND',
             })
-        }else if (pHand === 9 && dHand === 2){
+        } else if (pHand === 17) {
+            if(this.state.dealerStandsSoft17 === true){
+                console.log('the correct Play is STAND')
+                this.setState({
+                    correctPlay: 'STAND',
+                })
+            }
+            if(this.state.dealerStandsSoft17 === false){
+                if(dHand === 11 && this.state.surrenderAllowed === true){
+                    console.log('the correct Play is SURRENDER')
+                    this.setState({
+                        correctPlay: 'SURRENDER',
+                    })
+                } else {
+                    console.log('the correct Play is STAND')
+                    this.setState({
+                        correctPlay: 'STAND',
+                    })
+                }
+            }
+        } else if (pHand === 9 && dHand === 2){
             console.log('the correct Play is HIT')
             this.setState({
                 correctPlay: 'HIT',
@@ -319,6 +354,7 @@ class CorrectPlayProvider extends Component {
 
 
     render(){
+        console.log(this.state)
         return (
             <CorrectPlayContext.Provider 
                 value={{
@@ -326,6 +362,7 @@ class CorrectPlayProvider extends Component {
                     checkSoftHand: this.checkSoftHand,
                     checkHardHand: this.checkHardHand,
                     correctPlay: this.state.correctPlay,
+                    setCorrectPlayRules: this.setCorrectPlayRules,
                 }}>
                 { this.props.children }
             </CorrectPlayContext.Provider>
