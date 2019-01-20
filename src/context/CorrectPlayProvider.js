@@ -100,22 +100,60 @@ class CorrectPlayProvider extends Component {
     checkSoftHand = (dealerHand, playerHand) => {
         const pHand = playerHand;
         const dHand = dealerHand;
+        
+        // dealerStandsSoft17: false
+        // doubleAllowed: false
+        // doubleAfterSplitAllowed: false
+        // surrenderAllowed: false
 
-        if (pHand >= 19){
+        if (pHand >= 20){
             console.log('the correct play is STAND')
             this.setState({
                 correctPlay: 'STAND',
             })
+        } else if (pHand === 19){
+            if (this.state.dealerStandsSoft17 === true){
+                console.log('the correct play is STAND')
+                this.setState({
+                    correctPlay: 'STAND',
+                })
+            } else if (this.state.dealerStandsSoft17 === false){
+                if(dHand === 6){
+                    if (this.state.doubleAllowed === true){
+                        console.log('the correct play is DOUBLE')
+                        this.setState({
+                        correctPlay: 'DOUBLE',
+                        })
+                    } else if (this.state.doubleAllowed === false){
+                        console.log('the correct play is STAND')
+                        this.setState({
+                        correctPlay: 'STAND',
+                        })
+                    }
+                } else {
+                    console.log('the correct play is STAND')
+                    this.setState({
+                    correctPlay: 'STAND',
+                    })
+                }
+            }  
         } else if(pHand === 13 && dHand <= 4){
             console.log('the correct play is HIT')
             this.setState({
                 correctPlay: 'HIT',
             })
         } else if (pHand === 13 && dHand <= 6){
-            console.log('the correct play is DOUBLE.  Else Hit.')
-            this.setState({
+            if (this.state.doubleAllowed === true){
+                console.log('the correct play is DOUBLE')
+                this.setState({
                 correctPlay: 'DOUBLE',
-            })
+                })
+            } else if (this.state.doubleAllowed === false){
+                console.log('the correct play is HIT')
+                this.setState({
+                correctPlay: 'HIT',
+                })
+            }
         } else if(pHand === 13 && dHand <= 11){
             console.log('the correct play is HIT')
             this.setState({
@@ -127,10 +165,17 @@ class CorrectPlayProvider extends Component {
                 correctPlay: 'HIT',
             })
         } else if (pHand === 14 && dHand <= 6){
-            console.log('the correct play is DOUBLE.  Else Hit.')
-            this.setState({
+            if (this.state.doubleAllowed === true){
+                console.log('the correct play is DOUBLE')
+                this.setState({
                 correctPlay: 'DOUBLE',
-            })
+                })
+            } else if (this.state.doubleAllowed === false){
+                console.log('the correct play is HIT')
+                this.setState({
+                correctPlay: 'HIT',
+                })
+            }
         } else if(pHand === 14 && dHand <= 11){
             console.log('the correct play is HIT')
             this.setState({
@@ -142,10 +187,17 @@ class CorrectPlayProvider extends Component {
                 correctPlay: 'HIT',
             })
         } else if (pHand === 15 && dHand <= 6){
-            console.log('the correct play is DOUBLE.  Else Hit.')
-            this.setState({
+            if (this.state.doubleAllowed === true){
+                console.log('the correct play is DOUBLE')
+                this.setState({
                 correctPlay: 'DOUBLE',
-            })
+                })
+            } else if (this.state.doubleAllowed === false){
+                console.log('the correct play is HIT')
+                this.setState({
+                correctPlay: 'HIT',
+                })
+            }
         } else if(pHand === 15 && dHand <= 11){
             console.log('the correct play is HIT')
             this.setState({
@@ -157,10 +209,17 @@ class CorrectPlayProvider extends Component {
                 correctPlay: 'HIT',
             })
         } else if (pHand === 16 && dHand <= 6){
-            console.log('the correct play is DOUBLE.  Else Hit.')
-            this.setState({
+            if (this.state.doubleAllowed === true){
+                console.log('the correct play is DOUBLE')
+                this.setState({
                 correctPlay: 'DOUBLE',
-            })
+                })
+            } else if (this.state.doubleAllowed === false){
+                console.log('the correct play is HIT')
+                this.setState({
+                correctPlay: 'HIT',
+                })
+            }
         } else if(pHand === 16 && dHand <= 11){
             console.log('the correct play is HIT')
             this.setState({
@@ -172,25 +231,53 @@ class CorrectPlayProvider extends Component {
                 correctPlay: 'HIT',
             })
         } else if (pHand === 17 && dHand <= 6){
-            console.log('the correct play is DOUBLE.  Else Hit.')
-            this.setState({
+            if (this.state.doubleAllowed === true){
+                console.log('the correct play is DOUBLE')
+                this.setState({
                 correctPlay: 'DOUBLE',
-            })
+                })
+            } else if (this.state.doubleAllowed === false){
+                console.log('the correct play is HIT')
+                this.setState({
+                correctPlay: 'HIT',
+                })
+            }
         } else if(pHand === 17 && dHand <= 11){
             console.log('the correct play is HIT')
             this.setState({
                 correctPlay: 'HIT',
             })
         } else if(pHand === 18 && dHand === 2){
-            console.log('the correct play is STAND')
-            this.setState({
-                correctPlay: 'STAND',
-            })
+            if(this.dealerStandsSoft17 === true) {
+                console.log('the correct play is STAND')
+                this.setState({
+                    correctPlay: 'STAND',
+                })
+            } else if (this.dealerStandsSoft17 === false) {
+                if(this.state.doubleAllowed === true){
+                    console.log('the correct play is DOUBLE')
+                    this.setState({
+                        correctPlay: 'DOUBLE',
+                    })
+                } else if (this.state.doubleAllowed === false){
+                    console.log('the correct play is STAND')
+                    this.setState({
+                        correctPlay: 'STAND',
+                    })
+                }
+            }
         } else if (pHand === 18 && dHand <= 6){
-            console.log('the correct play is DOUBLE.  Else Stand.')
-            this.setState({
-                correctPlay: 'DOUBLE',
-            })
+            if(this.state.doubleAllowed === true){
+                console.log('the correct play is DOUBLE')
+                this.setState({
+                    correctPlay: 'DOUBLE',
+                })
+            } else if (this.state.doubleAllowed === false){
+                console.log('the correct play is STAND')
+                this.setState({
+                    correctPlay: 'STAND',
+                })
+            }
         } else if(pHand === 18 && dHand <= 8){
             console.log('the correct play is STAND')
             this.setState({
@@ -207,11 +294,6 @@ class CorrectPlayProvider extends Component {
     checkHardHand = (dealerHand, playerHand) => {
         const pHand = playerHand;
         const dHand = dealerHand;
-
-        // dealerStandsSoft17: false
-        // doubleAllowed: false
-        // doubleAfterSplitAllowed: false
-        // surrenderAllowed: false
 
         if (pHand <= 8 ){
             console.log('the correct Play is HIT')
@@ -415,7 +497,6 @@ class CorrectPlayProvider extends Component {
 
 
     render(){
-        console.log(this.state)
         return (
             <CorrectPlayContext.Provider 
                 value={{
