@@ -12,6 +12,7 @@ class TrainSpeedCount extends Component {
             currentCardValue: 0,
             count: 0,
             runningCountVisible: false,
+            whatsTheCountVisible: false,
             cardsPerSecond: 1,
             howFast: 1000,
         }
@@ -27,6 +28,10 @@ class TrainSpeedCount extends Component {
     }
 
     dealCard = () => {
+        this.setState({
+            runningCountVisible: false,
+            whatsTheCountVisible: false, 
+        })
         const speed = this.state.howFast
         const timerId = setInterval(()=>{
             axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deckID}/draw/?count=1`).then(response => {
@@ -47,7 +52,7 @@ class TrainSpeedCount extends Component {
         setTimeout( ()=> { 
             clearInterval(timerId)
             this.countIsFinished()
-        }, 10000)  
+        }, 30000)  
     }
     
     whatsTheCount = () => {
@@ -71,9 +76,19 @@ class TrainSpeedCount extends Component {
     countIsFinished = () => {
         setTimeout ( () => {
             this.setState({
-                runningCountVisible: true
+                cardsDealtImages: null,
+                whatsTheCountVisible: true 
             }) 
-        }, 1500)    
+        }, 1000)
+        this.displayCount()    
+    }
+
+    displayCount = () => {
+        setTimeout ( () => {
+            this.setState({
+                runningCountVisible: true,
+            }) 
+        }, 3000)  
     }
     
     handleChange = event => {
@@ -94,13 +109,23 @@ class TrainSpeedCount extends Component {
                 <div className='container'>
                     <h1 className='trainDrillSubtitle'>Speed Count Drill</h1>
                     <form className='speedCountForm'>
-                        <span className='cardsPerSecondSpan'>Cards Per Second:</span> <input className='cardsPerSecondInput' name='cardsPerSecond' type='number' value={this.state.cardsPerSecond} placeholder='Cards Per Second' onChange={this.handleChange}></input>
+                        <span className='cardsPerSecondSpan'>Cards Per Second:</span> 
+                        <input  className='cardsPerSecondInput' 
+                                name='cardsPerSecond' 
+                                type='number' 
+                                value={this.state.cardsPerSecond} 
+                                placeholder='Cards Per Second' 
+                                onChange={this.handleChange}>
+                        </input>
                     </form>
                     <div className='deckDisplay'>
-                        <img src={this.state.cardsDealtImages} alt='Cards Displayed Here'></img>
+                        <img src={this.state.cardsDealtImages} alt=''></img>
+                        <h1 className={this.state.whatsTheCountVisible ? 'showCountDiv' : 'hideCountDiv' }>Whats The Count?</h1>
+                        <br></br>
+                        <h1 className={this.state.runningCountVisible ? 'showCountDiv' : 'hideCountDiv' }>{this.state.count}</h1>
                     </div>
                     <button className='checkButton' onClick={this.dealCard}>Start</button>
-                    <h2 className={this.state.runningCountVisible ? 'showCountDiv' : 'hideCountDiv' }>The count is: {this.state.count}</h2>
+                    
                 </div>
             </div>
         )
