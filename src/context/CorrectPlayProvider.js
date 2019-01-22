@@ -58,11 +58,10 @@ class CorrectPlayProvider extends Component {
     }
 
     toggleBasicStrategyStats = () => {
-        console.log(this.state.showBasicStrategyStats) 
         if (this.state.showBasicStrategyStats === false){
-            this.setState({showBasicStrategyStats: true}, () => console.log(this.state.showBasicStrategyStats) )
+            this.setState({showBasicStrategyStats: true})
         } else{
-            this.setState({showBasicStrategyStats: false}, () => console.log(this.state.showBasicStrategyStats) )
+            this.setState({showBasicStrategyStats: false})
         }
     }
 
