@@ -11,12 +11,13 @@ class TrainSelfPacedCount extends Component {
             cardsDealtValues: [],
             currentCardValue: 0,
             count: 0,
-            runningCountVisible: false
+            runningCountVisible: false,
+            remainingCardsInDeck: 10
         }
     }
 
     componentDidMount(){
-        axios.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=8').then(response => {
+        axios.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1').then(response => {
             const deckID = response.data.deck_id;
             this.setState({
                 deckID: deckID,
@@ -30,12 +31,14 @@ class TrainSelfPacedCount extends Component {
             const oneCardDealt = response.data.cards[0].code;
             const cardImage = response.data.cards[0].image
             const cardValue = response.data.cards[0].value
+            const remaining = response.data.remaining
             this.setState(prevState => {
             return {
                 cardsDealt: [...prevState.cardsDealt, oneCardDealt],
                 cardsDealtImages: cardImage,
                 cardsDealtValues: [...prevState.cardsDealtValues, cardValue],
                 currentCardValue: cardValue,
+                remainingCardsInDeck: remaining
             }
             //  Once state is set from the new card, re-run the player hand total functions
             }, () => this.whatsTheCount() )
@@ -43,6 +46,10 @@ class TrainSelfPacedCount extends Component {
     }
 
     whatsTheCount = () => {
+        if(this.state.remainingCardsInDeck <= 1){
+            axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deckID}/shuffle/`).then(response => {
+            })
+        }
         //  if card value is 10 or greater, count is subtracted by 1
         if (this.state.currentCardValue === '10' || this.state.currentCardValue === 'JACK' || this.state.currentCardValue === 'QUEEN' || this.state.currentCardValue === 'KING' || this.state.currentCardValue === 'ACE'){
             this.setState(prevState => {
@@ -86,7 +93,7 @@ class TrainSelfPacedCount extends Component {
                 <div className='container'>
                     <h1 className='trainDrillSubtitle'>Self Paced Count Drill</h1>
                     <div className='deckDisplay'>
-                        <img src={this.state.cardsDealtImages} alt='Cards Displayed Here'></img>
+                        <img src={this.state.cardsDealtImages} alt='Card Displayed Here'></img>
                     </div>
                     <button className='checkButton' onClick={this.dealCard}>Deal Card</button>
                     <h2 onClick={this.hideShowRunningCount} className='toggleCount'>{this.hideShowCountDiv()} </h2>
