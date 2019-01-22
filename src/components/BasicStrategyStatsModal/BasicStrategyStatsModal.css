@@ -66,10 +66,71 @@
 .title{
     font-size: 3em;
 }
+.stats-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+}
+.first-stats{
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+}
+.second-stats{
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+}
+.good-percentage{
+    color: green;
+    font-weight: bold;
+}
+.average-percentage{
+    color: yellow;
+    font-weight: bold;
+}
+.bad-percentage{
+    color: red;
+    font-weight: bold;
+}
 
 @media screen and  (max-width: 800px){
     .suggestionWrapper{
         display: flex;
         flex-direction: column;
+    }
+    .stats-wrapper{
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+    .first-stats{
+        width: 100%;
+    }
+    .second-stats{
+        width: 100%;
+    }
+}
+
+@media screen and  (max-width: 500px){
+    .suggestionWrapper{
+        display: flex;
+        flex-direction: column;
+    }
+    .stats-wrapper{
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+    .first-stats{
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+    }
+    .second-stats{
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
     }
 }
