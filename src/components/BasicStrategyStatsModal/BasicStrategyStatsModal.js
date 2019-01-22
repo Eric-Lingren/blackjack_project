@@ -50,47 +50,54 @@ const BasicStrategyStatsModal = (props) => {
         splitPercentageClass = 'bad-percentage'
     }
 
-    return(
+    let modal = document.getElementById('simpleModal')
+    window.addEventListener('mousedown', clickOutsideStatsModal)
+    function clickOutsideStatsModal(e){
+        if(e.target === modal){
+            props.toggleBasicStrategyStats()
+        }
+    }
 
-            <div id="simpleModal" className= {show ? 'modalShow' : 'modalHide'} >
-                <div class="modal-content">
-                    <span class="closeBtn" onClick={props.toggleBasicStrategyStats}>&times;</span>
-                    <h2 className='modalSubTitle'> Current Player Stats </h2>
-                    <div className='stats-wrapper'>
-                        <div className='first-stats'>
-                            <div>
-                                <h3>Cumulative:</h3>
-                                <h4>Played: {props.hardHandsPlayed + props.softHandsPlayed + props.splitHandsPlayed} </h4>
-                                <h4>Correct: {props.hardHandsCorrect + props.softHandsCorrect + props.splitHandsCorrect} </h4>
-                                <h4 className={totalPercentageClass}> Accuracy: { totalPercentageCorrect >= 0 ? totalPercentageCorrect : 0 }% 
-                                </h4>
-                            </div>
-                            <div>
-                                <h3>Hard Hands:</h3>
-                                <h4>Played: {props.hardHandsPlayed} </h4>
-                                <h4>Correct: {props.hardHandsCorrect} </h4>
-                                <h4 className={hardPercentageClass}> Accuracy: {hardPercentageCorrect >=0 ? hardPercentageCorrect : 0 }% </h4>
-                            </div>
+    return(
+        <div id="simpleModal" className= {show ? 'modalShow' : 'modalHide'} >
+            <div id='my-modal-content' className="modal-content">
+                <span className="closeBtn" onClick={props.toggleBasicStrategyStats}>&times;</span>
+                <h2 className='modalSubTitle'> Current Player Stats </h2>
+                <div className='stats-wrapper'>
+                    <div className='first-stats'>
+                        <div>
+                            <h3>Cumulative:</h3>
+                            <h4>Played: {props.hardHandsPlayed + props.softHandsPlayed + props.splitHandsPlayed} </h4>
+                            <h4>Correct: {props.hardHandsCorrect + props.softHandsCorrect + props.splitHandsCorrect} </h4>
+                            <h4 className={totalPercentageClass}> Accuracy: { totalPercentageCorrect >= 0 ? totalPercentageCorrect : 0 }% 
+                            </h4>
                         </div>
-                        <div className='second-stats'>
-                            <div>
-                                <h3>Soft Hands:</h3>
-                                <h4>Played: {props.softHandsPlayed} </h4>
-                                <h4>Correct: {props.softHandsCorrect} </h4>
-                                <h4 className={softPercentageClass}> Accuracy: {softPercentageCorrect >=0 ? softPercentageCorrect : 0 }% </h4>
-                            </div>
-                            <div>
-                                <h3>Split Hands:</h3>
-                                <h4>Played: {props.splitHandsPlayed} </h4>
-                                <h4>Correct: {props.splitHandsCorrect} </h4>
-                                <h4 className={splitPercentageClass}> Accuracy: {splitPercentageCorrect >=0 ? splitPercentageCorrect : 0 }% </h4>
-                            </div>
+                        <div>
+                            <h3>Hard Hands:</h3>
+                            <h4>Played: {props.hardHandsPlayed} </h4>
+                            <h4>Correct: {props.hardHandsCorrect} </h4>
+                            <h4 className={hardPercentageClass}> Accuracy: {hardPercentageCorrect >=0 ? hardPercentageCorrect : 0 }% </h4>
                         </div>
                     </div>
-                    
-                    
+                    <div className='second-stats'>
+                        <div>
+                            <h3>Soft Hands:</h3>
+                            <h4>Played: {props.softHandsPlayed} </h4>
+                            <h4>Correct: {props.softHandsCorrect} </h4>
+                            <h4 className={softPercentageClass}> Accuracy: {softPercentageCorrect >=0 ? softPercentageCorrect : 0 }% </h4>
+                        </div>
+                        <div>
+                            <h3>Split Hands:</h3>
+                            <h4>Played: {props.splitHandsPlayed} </h4>
+                            <h4>Correct: {props.splitHandsCorrect} </h4>
+                            <h4 className={splitPercentageClass}> Accuracy: {splitPercentageCorrect >=0 ? splitPercentageCorrect : 0 }% </h4>
+                        </div>
+                    </div>
                 </div>
+                
+                
             </div>
+        </div>
     )  
 }
 
