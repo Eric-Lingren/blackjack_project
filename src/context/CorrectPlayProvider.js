@@ -18,6 +18,7 @@ class CorrectPlayProvider extends Component {
             splitHandsPlayed: 0,
             splitHandsCorrect: 0,
             currentKindOfHandBeingPlayed: '',
+            showBasicStrategyStats: false,
         }
     }
 
@@ -53,6 +54,15 @@ class CorrectPlayProvider extends Component {
                     }
                 })
             } 
+        }
+    }
+
+    toggleBasicStrategyStats = () => {
+        console.log(this.state.showBasicStrategyStats) 
+        if (this.state.showBasicStrategyStats === false){
+            this.setState({showBasicStrategyStats: true}, () => console.log(this.state.showBasicStrategyStats) )
+        } else{
+            this.setState({showBasicStrategyStats: false}, () => console.log(this.state.showBasicStrategyStats) )
         }
     }
 
@@ -603,6 +613,8 @@ class CorrectPlayProvider extends Component {
                     softHandsCorrect: this.state.softHandsCorrect,
                     splitHandsPlayed: this.state.splitHandsPlayed,
                     splitHandsCorrect: this.state.splitHandsCorrect,
+                    toggleBasicStrategyStats: this.toggleBasicStrategyStats,
+                    showBasicStrategyStats: this.state.showBasicStrategyStats,
                 }}>
                 { this.props.children }
             </CorrectPlayContext.Provider>

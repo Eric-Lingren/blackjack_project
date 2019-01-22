@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {withCorrectPlay} from './context/CorrectPlayProvider';
+import BasicStrategyStatsModal from './components/BasicStrategyStatsModal/BasicStrategyStatsModal'
 
 class TrainBasicStrategy extends Component {
     constructor(props){
@@ -146,8 +147,6 @@ class TrainBasicStrategy extends Component {
     }
 
     checkButton = (e) => {
-       
-
         const answer = this.props.correctPlay
         const guess = e.target.value
         const hands = ['Hit', 'Stand', 'Double', 'Split', 'Surrender']
@@ -182,12 +181,7 @@ class TrainBasicStrategy extends Component {
     }
 
     checkStats = () => {
-        console.log('hard hands played ' + this.props.hardHandsPlayed)
-        console.log('hard hands correct ' + this.props.hardHandsCorrect)
-        console.log('soft hands played ' + this.props.softHandsPlayed)
-        console.log('soft hands correct ' + this.props.softHandsCorrect)
-        console.log('split hands played ' + this.props.splitHandsPlayed)
-        console.log('split hands correct ' + this.props.splitHandsCorrect)
+        this.props.toggleBasicStrategyStats()
     }
 
     handleRulesCheckbox = (e) => {
@@ -247,7 +241,7 @@ class TrainBasicStrategy extends Component {
                         <button className='dealBSButton' onClick={this.dealCard}>Deal</button>
                         <button className='check-stats-button' onClick={this.checkStats}>Check Stats</button>
                     </div>
-                    
+                    <BasicStrategyStatsModal />
                 </div>
             </div>
         )
