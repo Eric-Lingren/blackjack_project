@@ -13,5 +13,5 @@ ReactDOM.render(
             <App />
         </CasinoRulesProvider>
         </CorrectPlayProvider>
-    </HashRouter> 
-, document.getElementById('root'));
+    </HashRouter>, 
+document.getElementById('root'));

@@ -14,7 +14,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && mv build/index.html build/200.html && surge build"
+    "deploy": "npm run build && mv build/index.html build/200.html && surge deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,5 +37,5 @@
   "bugs": {
     "url": "https://github.com/Eric-Lingren/blackjack_project/issues"
   },
-  "homepage": "https://github.com/Eric-Lingren/blackjack_project#readme"
+  "homepage": "./"
 }
