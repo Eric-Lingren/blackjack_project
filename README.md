@@ -1,3 +1,5 @@
+Live site heployment can be found here:  https://blackjack-for-cardcounters.netlify.com/#/
+
 Blackjack for card counters is not your average blackjack game.  It is designed to help players become more proficient card counters through training drills and enhanced gameplay.  
 
 This Front-End React site contains a traditional blackjack game and maintains comprehensive game statistics, such as what the player/casino advantage is during any given hand, what the count is and optimal betting amounts based on the players' current advantage.
