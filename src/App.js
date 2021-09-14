@@ -260,32 +260,33 @@ initialBlackjack = () => {
   
 
  //  Deal card to player when they choose to hit
- dealOneCard = () => {
-  axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deckID}/draw/?count=1`).then(response => {
-    const oneCardDealt = response.data.cards[0].code;
-    const remainingCards = response.data.remaining;
-    const cardImage = response.data.cards[0].image
-    const cardValue = response.data.cards[0].value
+  dealOneCard = () => {
+    axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deckID}/draw/?count=1`)
+    .then(response => {
+      const oneCardDealt = response.data.cards[0].code;
+      const remainingCards = response.data.remaining;
+      const cardImage = response.data.cards[0].image
+      const cardValue = response.data.cards[0].value
 
-    this.setState(prevState => {
-      return {
-        playerHand: [...prevState.playerHand, oneCardDealt],
-        playerHandImages: [...prevState.playerHandImages, cardImage],
-        playerHandValues: [...prevState.playerHandValues, cardValue],
-        countArray: [...prevState.countArray, cardValue],
-        cardsDealt: prevState.cardsDealt + 1,
-        decksPlayed: ((this.state.cardsDealt / 52).toFixed(2) ),
-        remainingCards: remainingCards,
-        remainingDecks: ( (this.state.deckCount - this.state.decksPlayed).toFixed(2) ),
-        trueCount: ((this.state.count / this.state.remainingDecks).toFixed(1)),
-        playerAdvantage: ( (-0.5 + (this.state.trueCount * 0.5)).toFixed(2) ),
-      }
-      //  Once state is set from the new card, re-run the player hand total functions
-    }, () => this.countPlayerTotal()) 
-    this.whatsTheCountGame()
-  })
-  
+      this.setState(prevState => {
+        return {
+          playerHand: [...prevState.playerHand, oneCardDealt],
+          playerHandImages: [...prevState.playerHandImages, cardImage],
+          playerHandValues: [...prevState.playerHandValues, cardValue],
+          countArray: [...prevState.countArray, cardValue],
+          cardsDealt: prevState.cardsDealt + 1,
+          decksPlayed: ((this.state.cardsDealt / 52).toFixed(2) ),
+          remainingCards: remainingCards,
+          remainingDecks: ( (this.state.deckCount - this.state.decksPlayed).toFixed(2) ),
+          trueCount: ((this.state.count / this.state.remainingDecks).toFixed(1)),
+          playerAdvantage: ( (-0.5 + (this.state.trueCount * 0.5)).toFixed(2) ),
+        }
+        //  Once state is set from the new card, re-run the player hand total functions
+      }, () => this.countPlayerTotal()) 
+      this.whatsTheCountGame()
+    })
 }
+
 
 //  Checks to see if the player went over 21
   didPlayerBust = () => {
@@ -310,6 +311,7 @@ initialBlackjack = () => {
       this.playerStands()
     }
   }
+
 
   didDealerBust = () => {
     console.log('did dealer bust function ran');
@@ -671,7 +673,6 @@ if(this.state.showAdviceDiv === false){
     return (
       <div>
         <Navbar />
-
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/play" render={props => 
